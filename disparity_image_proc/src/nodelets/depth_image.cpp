@@ -169,6 +169,28 @@ void DepthImageNodelet::imageCb(const ImageConstPtr& l_image_msg,
   model_.projectDisparityImageTo3d(dmat, points_mat_, true);
   cv::Mat_<cv::Vec3f> mat = points_mat_;
 
+  sensor_msgs::ImagePtr depth_image(new sensor_msgs::Image());
+
+  depth_image->header = disp_msg->header;
+  depth_image->width = dimage.width;
+  depth_image->height = dimage.height;
+  depth_image->encoding = sensor_msgs::image_encodings::TYPE_32FC1;
+  depth_image->step = sizeof(float);
+
+  size_t size = depth_image->width * depth_image->height;
+
+  depth_image->data.resize(size * depth_image->step);
+
+  std::vector<uint8_t>& data = depth_image->data;
+
+  for (size_t i = 0; i < size; ++i){
+    //data[i*sizeof(float)] =
+    memcpy (&data[i*sizeof(float)], &mat(i)[2], sizeof (float));
+  }
+
+
+  pub_depth_image_.publish(depth_image);
+
   /*
 
   // Fill in new PointCloud2 message (2D image-like layout)

@@ -1,0 +1,39 @@
+<package>
+  <name>disparity_image_proc</name>
+  <version>1.12.5</version>
+  <description>Conversion of disparity to depth images.</description>
+  <author>Stefan Kohlbrecher</author>
+  <maintainer email="kohlbrecher@sim.tu-darmstadt.de">Stefan Kohlbrecher</maintainer>
+  <license>BSD</license>
+  <url>http://www.ros.org/wiki/stereo_image_proc</url>
+
+  <export>
+    <nodelet plugin="${prefix}/nodelet_plugins.xml" />
+  </export>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <test_depend>rostest</test_depend>
+  
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>image_geometry</build_depend>
+  <build_depend>image_proc</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>libopencv-dev</build_depend>
+  <build_depend>message_filters</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>stereo_msgs</build_depend>
+
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>dynamic_reconfigure</run_depend>
+  <run_depend>image_geometry</run_depend>
+  <run_depend>image_proc</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>libopencv-dev</run_depend>
+  <run_depend>message_filters</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>stereo_msgs</run_depend>
+</package>

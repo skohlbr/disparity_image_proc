@@ -1,0 +1,11 @@
+/**
+
+@mainpage
+
+@htmlinclude manifest.html
+
+@b stereo_image_proc contains a nodelet for converting disparity images provided by a stereo camera into depth images.
+
+Currently this package has no public code API.
+
+*/

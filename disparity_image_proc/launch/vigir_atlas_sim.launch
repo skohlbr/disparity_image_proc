@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <node pkg="nodelet" type="nodelet" name="stereo_proc"  args="manager"/>
+
+  <node name="disparity_image_proc" pkg="nodelet" type="nodelet" args="load disparity_image_proc/depth_image stereo_proc" output="screen">
+    <remap from="/right/camera_info" to="/multisense_sl/camera/right/camera_info"/>
+    <remap from="/left/camera_info" to="/multisense_sl/camera/left/camera_info"/>
+    <remap from="/left/image_rect_color" to="/multisense_sl/camera/left/image_rect_color"/>
+    <remap from="/disparity" to="/multisense_sl/camera/disparity"/>
+    <remap from="/depth_image" to="/multisense_sl/camera/left/depth_image"/>    
+  </node>
+
+
+</launch>

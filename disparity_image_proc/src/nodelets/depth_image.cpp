@@ -175,17 +175,23 @@ void DepthImageNodelet::imageCb(const ImageConstPtr& l_image_msg,
   depth_image->width = dimage.width;
   depth_image->height = dimage.height;
   depth_image->encoding = sensor_msgs::image_encodings::TYPE_32FC1;
-  depth_image->step = sizeof(float);
+  depth_image->step = sizeof(float)*depth_image->width;
 
-  size_t size = depth_image->width * depth_image->height;
+  size_t num_pixels = depth_image->width * depth_image->height;
 
-  depth_image->data.resize(size * depth_image->step);
+  depth_image->data.resize(num_pixels * sizeof(float));
 
   std::vector<uint8_t>& data = depth_image->data;
 
-  for (size_t i = 0; i < size; ++i){
+  float nan = std::numeric_limits<float>::quiet_NaN();
+
+  for (size_t i = 0; i < num_pixels; ++i){
     //data[i*sizeof(float)] =
-    memcpy (&data[i*sizeof(float)], &mat(i)[2], sizeof (float));
+    if (mat(i)[2] < 1000.0){
+      memcpy (&data[i*sizeof(float)], &mat(i)[2], sizeof (float));
+    }else{
+      memcpy (&data[i*sizeof(float)], &nan, sizeof (float));//data[i*sizeof(float)]
+    }
   }
 
 

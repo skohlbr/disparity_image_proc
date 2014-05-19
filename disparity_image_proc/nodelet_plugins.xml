@@ -1,4 +1,4 @@
-<library path="lib/libstereo_image_proc">
+<library path="lib/libdisparity_image_proc">
 
 
   <class name="disparity_image_proc/depth_image" type="stereo_image_proc::DepthImageNodelet" base_class_type="nodelet::Nodelet">

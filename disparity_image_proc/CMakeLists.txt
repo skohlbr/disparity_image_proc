@@ -9,11 +9,8 @@ find_package(Boost REQUIRED COMPONENTS thread)
 
 catkin_package(
   CATKIN_DEPENDS image_geometry image_proc sensor_msgs stereo_msgs
-  INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
 )
-
-include_directories(include)
 
 find_package(OpenCV REQUIRED calib3d)
 include_directories(SYSTEM ${catkin_INCLUDE_DIRS}
